@@ -4,6 +4,8 @@
 #This software has an MIT Licence, and the libaries are as follows:
 import pyperclip as copyBuffer # BSD Licence
 import easy_pyttsx3 as tts # MIT licence
+import platform #built in to python
+#import unicodedata
 
 class TextToSpeach:
 
@@ -13,13 +15,10 @@ class TextToSpeach:
 		# I would sugest a config file but fear it would slow it down.
 		
 		# Add custom words, this has an electronics bias
-		self.customWords = {"€" = "Euros", 
-		"£" = 'Pounds',
-		"Ω" = 'Ohms',
-		"μ" = 'Mu'}
-		
-		# Pick your speed
-		self.speed = 120 # nice slow & clear.
+		self.customWords = {"€": "Euros", 
+		"£": 'Pounds',
+		"Ω": 'Ohms',
+		"μ": 'Mu'}
 		
 		self.get_copy_buffer()
 		self.refine_text()
@@ -37,49 +36,45 @@ class TextToSpeach:
 
 	def refine_text(self):
 		
-		for symbol, word in self.customWords :
+		#Convert some symbols to custom words
+		self.tweekSymbols()
 		
-			# convert a few known unicodes to words
-			self.data = self.data.replace(symbol, word)
-
 		# if your running windows
 		if platform.system() == "Windows" :
 		
-			# Normalize the text to ascii
-			self.text = unicodedata.normalize('NFKD', self.data).encode('ascii','ignore')
+			#... we need to do some formatting. Well I'm basing this on Windows 7
+			self.iHateUniCode()
 
 		# if your running MacOS
-		elif platform.system() == "MacOS" :
-		
-			self.data.append(", also you should try the Native MacOS tool it's much better!")
+		elif platform.system() == "Darwin" :
 			
-			# Go the full utf-8!
+			# No faffing around just send it the full utf-8!
 			self.text = self.data
 
 		# if it's linux / solaris / BSD risk utf-8! this is full of future development.
-		else :
+		elif platform.system() == "Linux" :
 		
 			# Go the full utf-8!
 			self.text = self.data
-		
-		# Depbug statment
-		print(self.text)
 
-	def say_it(self):
-	
-		# Set up the voise engine
-		engine = pyttsx3.init()
+	def tweekSymbols(self):
+
+		for symbol in self.customWords :
+
+			# convert a few known unicodes to words
+			self.data = self.data.replace(symbol, self.customWords[symbol])
+
+	def iHateUniCode(self):
 		
-		# Set preffered listing speed.
-		engine.rate = self.speed
+		# Normalize the text to ascii
+		string_encode = self.data.encode("ascii","ignore")
+		self.text = string_encode.decode()
+	
+	def say_it(self):
 		
 		try:
-		
-			# load the text
-			engine.say(self.text)
-		
 			# off you go.
-			engine.runAndWait()
+			tts.say(self.text)
 			
 		except:
 		
