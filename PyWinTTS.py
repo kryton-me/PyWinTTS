@@ -1,28 +1,22 @@
 # -*- coding: utf-8 -*-
-import win32clipboard
+import pyperclip
 import pyttsx
-import sys
 import unicodedata
-
-#Think I need to migrate to Python 3 to get Unicode bit working. 
 
 class TextToSpeach:
 
 	def __init__(self):
 		self.get_copy_buffer()
 		self.refine_text()
-		print self.text
+		print(self.text)
 		self.say_it()
 
 		
 	def get_copy_buffer(self):
 		try:
-			win32clipboard.OpenClipboard()
-			self.data = win32clipboard.GetClipboardData()
-			win32clipboard.CloseClipboard()
+			self.data = pyperclip.paste()
 		except:
-			win32clipboard.CloseClipboard()
-			self.data = sys.exc_info()[0]
+			self.data = "I did not read the copy buffer"
 
 	def refine_text(self):
 		if isinstance(self.data, basestring):
@@ -42,7 +36,8 @@ class TextToSpeach:
 
 			self.text = self.data
 
-			#print "have cleaned text"
+			# Depbug statment
+			#print("have cleaned text")
 
 		else:
 			
