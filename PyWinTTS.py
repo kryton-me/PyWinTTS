@@ -1,4 +1,3 @@
-#!/bin/python3
 # -*- coding: utf-8 -*-
 
 #This software has an MIT Licence, and the libaries are as follows:
