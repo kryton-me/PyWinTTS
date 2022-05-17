@@ -27,8 +27,10 @@ This uses the MIT License
 In order to use this in windows with a key combination a shortcut file is needed. 
 * create a link file on the desktop to the script
 * set the target as the above script
-* set a keyboard shortcut in the link file as: crtl + ⬆️ + C
+* set a keyboard shortcut in the link file as: crtl + ⬆️ + Q
+
+I had previously suggested ctrl + ⬆️ + C but this seems to conflict with a number of applications including firefox.
 
 # Using the script
 * Select the text to want read then press ctrl + C to copy it.
-* Press the keyboard combination crtl + ⬆️ + C to have it read back.
+* Press the keyboard combination crtl + ⬆️ + Q to have it read back.
