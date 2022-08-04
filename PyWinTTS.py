@@ -17,7 +17,8 @@ class TextToSpeach:
 		self.customWords = {"€": "Euros", 
 		"£": 'Pounds',
 		"Ω": 'Ohms',
-		"μ": 'Mu'}
+		"μ": 'Mu'
+		"ü": 'ur'}
 		
 		self.get_copy_buffer()
 		self.refine_text()
