@@ -6,7 +6,7 @@ Windows has a built in Text To Speech tool but there is no way to access it with
 If you have a Mac your much better using the built in tools and not this script.
 
 # Install Python
-This script has bern tested on Python 3.9, 3.10, & 3.12 The Libraries used are not supported by python 2.7
+This script has bern tested on Python 3.9, 3.10, 3.11 & 3.13 The Libraries used are not supported by python 2.7
 
 # libraries required
 Command syntax for Windows users
