@@ -19,7 +19,8 @@ class TextToSpeach:
 		"Ω": 'Ohms',
 		"μ": 'Mu',
 		"ü": 'ur'}
-		
+
+		# Now run the functions in this order...
 		self.get_copy_buffer()
 		self.refine_text()
 		print(self.text)
@@ -51,10 +52,11 @@ class TextToSpeach:
 			# No faffing around just send it the full utf-8!
 			self.text = self.data
 
-		# if it's linux / solaris / BSD risk utf-8! this is full of future development.
+		# if it's linux / solaris / BSD risk utf-8! 
+		# Un tested here may be dragons!
 		elif platform.system() == "Linux" :
 		
-			# Go the full utf-8!
+			# try utf-8, assuming it's like a mac
 			self.text = self.data
 
 	def tweekSymbols(self):
